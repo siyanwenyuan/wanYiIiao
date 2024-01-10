@@ -7,11 +7,9 @@
         等级:
       </div>
       <ul class="hospital">
-        <li class="active">全部</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
-        <li>三级甲等</li>
+        <li :class="{active:activeFlag}==''">全部</li>
+        <li v-for="level in levelArr" :key="level.value">{{level.name}}</li>
+
       </ul>
 
     </div>
@@ -29,9 +27,6 @@ import {HospitalLevelAndRegionResponseData,HospitalLevelAndRegionArr} from "@/ap
 
 //通过数组存储医院等级
 let levelArr=ref<HospitalLevelAndRegionArr>([]);
-
-
-
 //组件挂载完毕
 onMounted(() => {
 
@@ -44,12 +39,16 @@ onMounted(() => {
 const getLevel = async () => {
 
   let result: HospitalLevelAndRegionResponseData = await reqHospitalLevelAndRegion('HosType');
-  //存储医院等级数据
-  if(result.code==200)
-  {
-    levelArr.value=result.data;
+  levelArr.value=result.data;
+  console.log(levelArr);
 
-  }
+
+  //存储医院等级数据
+  // if(result.code===200)
+  // {
+  //   levelArr.value=result.data;
+  //
+  // }
 
 };
 

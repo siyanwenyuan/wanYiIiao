@@ -73,13 +73,21 @@ const getHospitalInfo = async () => {
   //获取医院的数据，默认是第一页每页显示十条数据
   let result: HospitalResponseData = await reqHospital(pageNo.value, pageSize.value);
   //console.log(result);
+  //存储已有的医院的数据
+  hasHospitalArr.value = result.data.content;
+  console.log(result);
+  console.log(hasHospitalArr);
+
+
+  //存储医院的总个数
+  total.value = result.data.totalElements;
   //存储数据
-  if (result.code == 200) {
-    //存储已有的医院的数据
-    hasHospitalArr.value = result.data.content;
-    //存储医院的总个数
-    total.value = result.data.totalElements;
-  }
+  // if (result.code == 200) {
+  //   //存储已有的医院的数据
+  //   hasHospitalArr.value = result.data.content;
+  //   //存储医院的总个数
+  //   total.value = result.data.totalElements;
+  // }
 }
 
 //分页器页码发送变化触发

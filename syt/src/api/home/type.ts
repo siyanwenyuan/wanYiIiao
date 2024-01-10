@@ -31,10 +31,7 @@ export interface Hospital {
         "stopTime": string,
         "quitDay": number,
         "quitTime": string,
-        "rule": string[
-
-
-            ]
+        "rule": string[]
     }
 }
 
